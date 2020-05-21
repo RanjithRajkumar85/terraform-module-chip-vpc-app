@@ -14,6 +14,11 @@ provider "aws" {
   region = "us-west-1"
 }
 
+provider "aws" {
+  alias  = "us-east-1"
+  region = "us-east-1"
+}
+
 data "aws_availability_zones" "eu-azs" {
   provider = aws.eu-central-1
   state = "available"
