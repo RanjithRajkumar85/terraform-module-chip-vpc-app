@@ -14,17 +14,6 @@ provider "aws" {
   region = "us-west-1"
 }
 
-# to be removed
-provider "aws" {
-  alias  = "us-east-1"
-  region = "us-east-1"
-}
-
-# to be removed
-data "aws_availability_zones" "east-azs" {
-  provider = aws.us-east-1
-  state = "available"
-}
 
 data "aws_availability_zones" "eu-azs" {
   provider = aws.eu-central-1
@@ -169,3 +158,30 @@ resource "aws_route" "west-vpc" {
   vpc_peering_connection_id = aws_vpc_peering_connection.peer.id
 }
 
+
+
+
+
+
+#####################################################################
+
+
+# to be removed
+provider "aws" {
+  alias  = "us-east-1"
+  region = "us-east-1"
+}
+
+resource "aws_s3_bucket" "b" {
+  provider = aws.us-east-1
+  bucket = "my-tf-test-bucket-terraform-chip"
+  acl    = "private"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
+
+#####################################################################
