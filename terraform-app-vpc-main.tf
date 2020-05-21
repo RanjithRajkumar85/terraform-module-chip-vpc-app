@@ -14,9 +14,16 @@ provider "aws" {
   region = "us-west-1"
 }
 
+# to be removed
 provider "aws" {
   alias  = "us-east-1"
   region = "us-east-1"
+}
+
+# to be removed
+data "aws_availability_zones" "east-azs" {
+  provider = aws.us-east-1
+  state = "available"
 }
 
 data "aws_availability_zones" "eu-azs" {
